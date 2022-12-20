@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="UNCC Projects App">
+        <title>UNCC Projects App</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rubik:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+        ></script>
+    </head>
+    <header>
+        <nav class="home-nav-bar">
+            <div class= "home-btn">
+                <a href="{{ url_for('index') }}" class="home-icon">TopTeam</a>
+            </div>
+            <div class="nav-right">
+                <a class="nav-btn" href="{{ url_for('get_projects') }}"> My Projects</a>
+                <a class="nav-btn" href="{{ url_for('new_project') }}"> New Project</a>
+        {% if user %}
+                <a class="nav-btn" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+                <a class="nav-btn"  href="{{ url_for('login') }}">Sign In</a>
+                <a class="nav-btn nav-cta" href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+            </div>
+        </nav>
+    </header>
+    <body>
+    <div class="container">
+        <div class="register-container">
+        <div class="formwrapper">
+            <h2 class="title heading-primary">Register</h2>
+            <form method="POST" action="/register">
+                <div class="form-field heading-secondary">{{ form.firstname.label }} {{ form.firstname }}
+                    {% if form.firstname.errors %}
+                    <ul class="errors">
+                        {% for error in form.firstname.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-field heading-secondary">{{ form.lastname.label }} {{ form.lastname }}
+                    {% if form.lastname.errors %}
+                    <ul class="errors">
+                        {% for error in form.lastname.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-field heading-secondary">{{ form.email.label }} {{ form.email }}
+                    {% if form.email.errors %}
+                    <ul class="errors">
+                        {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-field heading-secondary">{{ form.password.label }} {{ form.password }}
+                    {% if form.password.errors %}
+                    <ul class="errors">
+                        {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="form-field heading-secondary">{{ form.confirmPassword.label }} {{ form.confirmPassword }}
+                    {% if form.confirmPassword.errors %}
+                    <ul class="errors">
+                        {% for error in form.confirmPassword.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                {{ form.submit }}
+            </form>
+</div>
+</div>
+        </div>
+    </body>
+</html>

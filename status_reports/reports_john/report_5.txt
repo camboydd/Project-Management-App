@@ -1,0 +1,20 @@
+Section 1
+
+-Complete flask activity 5 to learn about automated testing
+-Complete group status report
+-Determine which items in the product backlog can be prototyped with what we currently know
+-Create a database to hold users, projects, and tasks
+
+Section 2
+
+-Completed flask activity 5 to get learn how to edit, delete, and run automated testing
+-Used flask activity 5 as a skeleton to implement the project
+-Converted the database for the project
+-Converted functions to implement backlog tasks for our project
+
+Section 3
+
+-Complete flask activity 6 to learn about implementing user accounts
+-Implement a basic form of all our tasks in the backlog
+-Create automated testing for each piece of the system
+-Complete the MVP of our project

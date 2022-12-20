@@ -1,0 +1,19 @@
+Section 1
+
+-Complete flask activity 6 to learn about implementing user accounts
+-Implement a basic form of all our tasks in the backlog
+-Create automated testing for each piece of the system
+-Complete the MVP of our project
+
+Section 2
+
+-Finished flask activity 6 to create a user database to customize what is displayed on the site based on the user
+-Worked on MVP for our product
+-Finished some of the items in our backlog
+
+Section 3
+
+-Implement the user database in our product
+-Fully implement items from our backlog that were prototyped in the MVP
+-Start working on implementing backlog items that were not required for the MVP
+-Create unit tests for Account verification

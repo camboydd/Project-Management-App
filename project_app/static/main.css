@@ -1,0 +1,483 @@
+/*
+Colors:
+
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+html {
+    /* font-size: 10px; */
+    /* Percentage of user's browser font-size setting */
+    font-size: 62.5%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+  
+    /* Does not work on Safari */
+    /* scroll-behavior: smooth; */
+}
+body {
+    font-family: "Inter", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #31352E;
+    background-image: linear-gradient(
+        21deg,
+        rgba(64, 83, 206, 0.3697003234675773) 68%,
+        rgba(255, 206, 196, 0.5) 163%
+      ),
+      linear-gradient(
+        163deg,
+        rgba(49, 146, 170, 0.07944489965716128) 86%,
+        rgba(239, 112, 138, 0.5) 40%
+      ),
+      linear-gradient(30deg, rgba(76, 79, 173, 0.6173675716587805) 22%, rgba(237, 106, 134, 0.5) 169%),
+      linear-gradient(48deg, rgba(31, 85, 147, 0.7323890641868473) 64%, rgba(247, 126, 132, 0.5) 43%);
+    background-blend-mode: overlay, multiply, color, normal;
+    
+  
+    /* Only works if there is nothing absolutely positioned in relation to body */
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+a {
+    text-decoration: none;
+    border: none;
+    color:black;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.center-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container {
+    /* or 1140px */
+    max-width: 120rem;
+    padding: 0 3.2rem;
+    margin: 0 auto;
+}
+.register-container{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.text-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem 4rem;
+}
+.my-project-container{
+    margin-top: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+    width: 50rem;
+    box-shadow: 0 0 5px rgba(65, 67, 144, 0.1);
+    padding: 10px;
+}
+span{
+    color:#86377b;
+    filter: brightness(140%);
+    font-weight: 500;
+}
+.heading-primary{
+    color:#eee;
+    font-size: 5rem;
+    font-weight: 300;
+}
+.heading-secondary{
+    color: #222;
+    font-size: 3.4rem;
+    font-weight: 200;
+}
+nav{
+
+}
+.home-icon{
+    font-size: 5rem;
+    color:#86377b;
+    transition: 0.3s;
+    font-weight: 500;
+    filter: brightness(140%);
+}
+.home-icon:hover{
+    transform: scale(1.15);
+}
+.nav-btn{
+    display: inline-block;
+    margin-left: 1rem;
+    color:#ffffff;
+    font-weight: 500;
+    background-color: #999999;
+    padding: 1rem;
+    border-radius: 20px;
+    transition: 0.3s;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.08),0 2px 5px 0 rgba(0,0,0,0.08);
+}
+.nav-btn:hover, .nav-btn:active{
+    background-color: #888888;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.08),0 10px 15px 0 rgba(0,0,0,0.08);
+}
+.home-nav-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:1rem 4rem;
+    font-size: 2rem;
+    background-color: #eeeeee;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+}
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero-txt{
+    text-align: center;
+}
+.hero-first{
+    padding-top: 8rem;
+    text-align: center;
+}
+.hero-second{
+    padding-top: 4rem;
+}
+.hero-cta{
+    margin-top: 1.6rem;
+    font-size: 2rem;
+    background-color: #222222;
+    color: #ffffff;
+}
+.nav-cta{
+    background-color: #222222;
+    color: #ffffff;
+}
+.hero-cta:hover, .hero-cta:active{
+    background-color: #86377b;
+    filter: brightness(140%);
+    color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.08),0 10px 15px 0 rgba(0,0,0,0.08);
+}
+.nav-cta:hover, .nav-cta:active{
+    background-color: #86377b;
+    filter: brightness(150%);
+    color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.08),0 10px 15px 0 rgba(0,0,0,0.08);
+}
+
+td{
+    font-size: 2rem;
+}
+th{
+    padding-top: 4rem;
+}
+.project-title{
+    border-bottom: 2px solid #222;
+    padding-bottom: 1rem;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 2rem 0;
+  }
+.textarea{
+    font-size: 2rem;
+}
+.project-form{
+    padding-top: 6rem;
+    display: flex;
+    flex-direction: column;
+}
+.pad-bottom{
+    padding-bottom: 2rem;
+}
+.remove-comment-button{
+    background: none;
+}
+.vote-section{
+    display: flex;
+}
+.arrow-icon{
+    height:20px;
+    width:20px;
+}
+.vote-background{
+    background:none;
+}
+.arrow-down{
+    position: relative;
+}
+.comment-score{
+    position: absolute;
+    top:0;
+    left:20px;
+}
+/*----------------------------------------------------------------*/
+/* FROM CODEPEN https://codepen.io/bousahla-mounir/pen/dyNeKQO */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+.shape{
+    position: absolute;
+    top: 92%;   left: 90%;
+    transform: translate(-50%,-50%) rotate(-15deg) skewX(25deg);
+    width: 90rem;  height: 80rem;
+    background: rgba(0,0,0,.5); 
+}
+.shape::before,.shape::after{
+    content: '';
+    position: absolute;
+    width: 100%;  height: 100%;
+    transition: .9s;
+}
+.shape::before{
+    top: -20px;  left: 20px;
+    background: #fff;
+}
+.shape::after{
+    top: -40px;  left: 40px;
+    background: rgba(255,255,255,.5); 
+    box-shadow: -10px 10px 10px rgba(0,0,0,.2);
+}
+
+.shape:hover::before,.shape:hover::after{
+    top: 0;  left: 0;
+}
+/* END CODEPEN*/
+/*----------------------------------------------------------------*/
+
+/* PROJECT SECTION */
+/*----------------------------------------------------------------*/
+#project{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0px;
+}
+.project-filter{
+    display: flex;
+    background-color: #eee;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(45, 45, 45, 0.6);
+    flex-wrap: wrap;
+    margin: 20px;
+    list-style: none;
+}
+.project-filter li{
+    margin: 10px;
+    padding: 5px 20px;
+    color: #252525;
+    font-size: 1.75rem;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    cursor: pointer;
+    user-select: none;
+}
+.project-filter-active{
+    background-color: #c9c9c9;
+    color: #272727;
+}
+.project-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+.single-project {
+    background-color: #eee;
+    width:330px;
+    height: 250px;
+    padding: 15px;
+    border: 1px solid #222;
+    margin: 20px;
+    position: relative;
+    text-align: center;
+}
+ .project-box{
+    /* width:330px;
+    position: absolute;
+    text-align: center; */
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    position: relative;
+    overflow: hidden;
+    /* border: 1px solid #eeeeee; */
+}
+.project-box img{
+    width:100%;
+    height: 220px;
+    max-height: 220px;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 5px;
+    opacity: 0.65;
+    border: 1px solid #222;
+}
+.create-new {
+    min-width:330px;
+    background-color: rgba(96, 96, 96, 0.35);
+    text-align: center;
+    position: absolute;
+}
+/* Bottom right text */
+.text-block {
+    position: absolute;
+    bottom: 2px;
+    left:0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    color: #ffffff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .showLeft{
+    text-shadow: none !important;
+    color:#fff !important;
+    padding:10px;
+}
+.single-project span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: black;
+  }
+  .single-project:hover .plus{
+    color: green;
+    margin-top: 0;
+    font-size: 15em;
+  }
+  
+/* Dropdown Menu */
+.icons li {
+    background: none repeat scroll 0 0 #fff;
+    height: 7px;
+    width: 7px;
+    line-height: 0;
+    list-style: none outside none;
+    margin-right: 15px;
+    margin-top: 3px;
+    vertical-align: top;
+    border-radius:50%;
+    pointer-events: none;
+}
+.btn-left {
+    left: 0em;
+}
+
+.btn-right {
+    right: 0em;
+}
+
+.btn-left, .btn-right {
+    position: absolute;
+    top: 0em;
+}
+
+.dropbtn {
+    background-color: rgba(34, 34, 34, 0.8);
+    position: relative;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #5a5a5ae4
+}
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 2em;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    font-size: 16px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content form input {
+    font-size: 0.85em;
+}
+.star-area {
+    position:absolute;
+    top: 1.2em;
+    left: 1.2em;
+    font-size: 1.5em;
+    padding: 0.1em;
+    box-shadow: none;
+}
+.star-area > form > button {
+    background-color: rgba(34, 34, 34, 0.8);
+    padding: 0.1em;
+    border-radius: 2px;
+    color: gold;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+.show {display:block;}
+.show {display:block;}
+@media(max-width:740px){
+    .project-filter{
+        background-color: #f9f9f9;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    .project-filter-active{
+        background-color: #ffffff;
+        border: 1px solid rgb(219,219,219);
+    }
+    .project-box{
+        width: 80%;
+    }
+}
+@media(max-width:550px){
+    .project-heading h3{
+        font-size: 1.8rem;
+    }
+}
+/*----------------------------------------------------------------*/

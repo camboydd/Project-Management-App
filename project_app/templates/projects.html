@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="UNCC Projects App">
+        <title>UNCC Projects App</title>
+
+        <!-- General Links -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='lightbox.min.css') }}">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+
+        <!-- Scripts -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="static/js/JQuery.js"></script>
+        <script src="static/js/lightbox.min.js"></script>
+
+    </head>
+    <header>
+        <nav class="home-nav-bar">
+            <div class= "home-btn">
+                <a href="{{ url_for('index') }}" class="home-icon">TopTeam</a>
+            </div>
+            <div class="nav-right">
+                <a class="nav-btn" href="{{ url_for('get_projects') }}"> My Projects</a>
+                <a class="nav-btn" href="{{ url_for('new_project') }}"> New Project</a>
+        {% if user %}
+                <a class="nav-btn" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+                <a class="nav-btn"  href="{{ url_for('login') }}">Sign In</a>
+                <a class="nav-btn nav-cta" href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+            </div>
+        </nav>
+    </header>
+    <body>
+        <h1 class="heading-primary hero-first">Welcome to your workspace {{ user.first_name }}!</h1>
+        <section id="project">
+            <ul class="project-filter">
+                <script> let listOfData = ["all"]; let fixedCategory = ""; let category = ""; let inList = false;</script>
+                <li class="list project-filter-active" data-filter="all">All</li>
+                {% for project in projects %}
+                    <script>
+                        inList = false;
+                        category = '{{ project.category }}';
+                        fixedCategory = category.concat("");
+                        fixedCategory = fixedCategory.charAt(0).toLocaleUpperCase() + fixedCategory.slice(1).toLowerCase()
+                        for(var i = 0; i < listOfData.length; i++) {
+                            console.log(inList)
+                            console.log(listOfData[i] + ":" + category)
+                            console.log(listOfData)
+                            if(category.toLocaleLowerCase().trim() == listOfData[i].toLocaleLowerCase().trim()) {
+                                inList = true;
+                            }
+                        }
+                        if(!inList){listOfData.push(category);$(".project-filter").append("<li class='list' data-filter='" + category + "'>" + fixedCategory + "</li>");}
+                    </script>
+                {% endfor %}
+                <li class="list" data-filter="favorite">Favorites</li>
+            </ul>
+            <div class="project-container">
+                <form action="{{ url_for('sort_projects') }}" method="post" style="background-color: transparent; text-align: center;">
+                    <input type="submit" value="Alphabetical Sort">
+                </form>
+                {% for project in projects %}
+                    <div class="single-project {{ project.category }} favorite-{{ project.favorite }}">
+                        <a href="{{ url_for('get_project', project_id=project.id) }}" class="project-box">
+                            <img src="{{ project.image_link }}" alt="work">
+                            <div class="text-block">
+                                <h3>{{ project.title}}</h3>
+                                <p>{{ project.date }}</p>
+                            </div>
+                        </a>
+                        <div class="star-area">
+                        {% if project.favorite == 1 %}
+                            <form action="{{ url_for('favorite_project', project_id=project.id) }}" method="post">
+                                <button type="submit" value="Favorite"><ion-icon name="star"></ion-icon></button>
+                            </form> 
+                            {% else %}
+                            <form action="{{ url_for('favorite_project', project_id=project.id) }}" method="post">
+                                <button type="submit" value="Favorite"><ion-icon name="star-outline"></ion-icon></button>
+                            </form>
+                        {% endif %} 
+                        </div>
+                        <!-- three dot menu -->
+                        <div class="dropdown btn-right">
+                            <!-- three dots -->
+                            <ul class="dropbtn icons showLeft" onclick="showDropdown('{{ project.id }}')">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <!-- menu -->
+                            <div id="myDropdown-{{ project.id }}" class="dropdown-content">
+                                <a href="{{ url_for('update_project', project_id=project.id) }}">Edit</a>
+                                <form action="{{ url_for('delete_project', project_id=project.id) }}" method="post">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="single-project">
+                        <a href="{{ url_for('new_project') }}" class="project-box create-new">
+                        </a>
+                        <a href="{{ url_for('new_project') }}">
+                            <span>Create New Project </span>
+                            <br>
+                            <span class="plus">&plus;</span>
+                        </a>
+                </div>
+        </section>
+
+    <script type="text/javascript">
+    
+        /*--for-filter-menu---------------------------------*/
+            $(document).on('click','.project-filter li',function(){
+                $(this).addClass('project-filter-active').siblings().removeClass('project-filter-active')
+            });
+        
+        /*--for-project/work-filter-------------------------*/
+        $(document).ready(function(){
+            $('.list').click(function(){
+                const value = $(this).attr('data-filter');
+                if(value == 'all'){
+                    $('.single-project').show('1000');
+                }
+                else if(value == "favorite") {
+                    $('.single-project').not('.'+value+"-True").hide('1000');
+                    $('.single-project').filter('.'+value+"-True").show('1000');
+                }
+                else{
+                    $('.single-project').not('.'+value).hide('1000');
+                    $('.single-project').filter('.'+value).show('1000');
+                }
+            });
+        });
+        </script>
+        <script>
+            $(document).on("click",".dropbtn", function (event) {
+                const clickedElement = $(event.currentTarget);
+                const targetElement = clickedElement.closest('.dropdown-content');
+                targetElement.toggle("show");
+            });
+            // $(".dropbtn").click(function() {
+            //     alert("clicked")
+            // })
+            function showDropdown(value) {
+                document.getElementById("myDropdown-"+value).classList.toggle("show");
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

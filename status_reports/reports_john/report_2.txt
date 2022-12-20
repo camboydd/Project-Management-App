@@ -1,0 +1,19 @@
+Section 1
+
+-Finish the flask introduction assignment so each group member understands flask.
+-Complete both individual and group status reports before 11:59pm Monday.
+-Start implementing some functionality from the Backlog using flask.
+-Streamline the process of writing the status reports because currently they don't feel very useful.
+
+Section 2
+
+-Completed the product wireframes outlining how each user story should be implemented
+-Created the storyboard to organize the product wireframes into a cohesive system
+-Learned how to use python variables in the html documents using flask
+-Learned that multiple route decorators can be used to describe the same function
+
+Section 3
+
+-Explore implementing a simple user story from the product backlog using flask
+-Finish individual and team status reports
+-Learn how passing variables between pages can enable flask to validate/store user input to be able to implement many of the user stories in the product backlog

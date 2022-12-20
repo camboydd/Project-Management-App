@@ -1,0 +1,19 @@
+Section 1
+
+-Implement the user database in our product
+-Fully implement items from our backlog that were prototyped in the MVP
+-Start working on implementing backlog items that were not required for the MVP
+-Create unit tests for Account verification
+
+Section 2
+
+-Implemented sorting function for projects. This allows for both alphabetical and reverse-alphabetical sorting.
+-Implemented favoriting function for projects. This allows the user to indicate projects of importance, placing them at the beginning of the projects list.
+-Implemented sharing function for projects. This allows users in the database to share a project with other users. Other users can see projects that have been shared with them.
+-Edited CSS styles and html pages to accomodate these changes.
+
+Section 3
+
+- Finish implementing the last task in the product backlog.
+- Add more color and images to the project to improve visual interest.
+- Add a description of the project to the homepage.

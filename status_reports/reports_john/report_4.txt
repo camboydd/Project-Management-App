@@ -1,0 +1,21 @@
+Section 1
+
+-Complete flask activity 4 to continue learning how to implement components of our system
+-Complete week 3 group status report
+-Assign tasks to team members to start working through the product backlog
+
+Section 2
+
+-Completed flask activity 4 to get learn how to implement databases
+-Installed sqlite
+-Installed sqlAlchemy
+-Created Gherkin style test cases for 4 of our items in the product backlog
+-Learned how to manipulate a database using sqlite
+-Learned how to implement a database in our flask project
+
+Section 3
+
+-Complete flask activity 5 to learn about automated testing
+-Complete group status report
+-Determine which items in the product backlog can be prototyped with what we currently know
+-Create a database to hold users, projects, and tasks

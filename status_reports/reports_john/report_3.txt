@@ -1,0 +1,20 @@
+Section 1
+
+-Explore implementing a simple user story from the product backlog using flask
+-Finish individual and team status reports
+-Learn how passing variables between pages can enable flask to validate/store user input to be able to implement many of the user stories in the product backlog
+
+Section 2
+
+-Completed flask activity 3 to understand navigation implementation, reading and writing using flask
+-Created a context diagram to visualize the broad structure of our system
+-Created a data flow diagram to visualize how each function and component interacts with each other
+-Outlined how each component will be represented with a model
+-Determined what fields each model will need to represent the information they will have
+-Completed week 2 status reports
+
+Section 3
+
+-Complete flask activity 4 to continue learning how to implement compnents of our system
+-Complete week 3 group status report
+-Assign tasks to teammembers to start working through the product backlog

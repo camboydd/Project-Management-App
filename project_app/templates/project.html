@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="UNCC Projects App">
+        <title>UNCC Projects App</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rubik:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='project.css') }}">
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+        ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="static/js/JQuery.js"></script>
+        <script>
+          // Passes through different divs with target class to set to hidden or not.
+          let pageName = "";
+          function show(shown) {
+            pageNameArray = document.getElementsByClassName("target");
+            for (let i = 0; i < pageNameArray.length; i++) {
+                if(pageNameArray[i].id == shown){
+                     pageNameArray[i].style.display = "inherit";
+                }
+                else {
+                    pageNameArray[i].style.display = "none";
+                }
+              }
+          }
+      </script>
+    </head>
+    <header>
+        <nav class="home-nav-bar">
+            <div class= "home-btn">
+                <a href="{{ url_for('index') }}" class="home-icon">TopTeam</a>
+            </div>
+            <div class="nav-right">
+                <a class="nav-btn" href="{{ url_for('get_projects') }}"> My Projects</a>
+                <a class="nav-btn" href="{{ url_for('new_project') }}"> New Project</a>
+        {% if user %}
+                <a class="nav-btn" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+                <a class="nav-btn"  href="{{ url_for('login') }}">Sign In</a>
+                <a class="nav-btn nav-cta" href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+            </div>
+        </nav>
+    </header>
+    <body>
+    <section id="task-body">
+      <div class="task-app">
+        <div class="task-selection">
+            <div class="left-content">
+              <ul class="action-list">
+                <li class="item">
+                  <img class="feather feather-star" src="svg/star.svg" alt="">
+                  <span> Today</span>
+                </li>
+                    <li class="item">
+                      <img class="feather feather-calendar" src="svg/calender.svg" alt="" />
+                      <span>Upcoming</span>
+                    </li>
+                    <li class="item">
+                      <img class="feather feather-hash" src="svg/hash.svg" alt="" />
+                      <span>Important</span>
+                    </li>
+                </ul>
+          
+                <ul class="category-list">
+                    <li class="item">
+                      <img class="feather feather-users" src="svg/users.svg" alt="" />
+                      <span>Family</span>
+                    </li>
+                    <li class="item">
+                      <img class="feather feather-sun" src="svg/sun.svg" alt="" />
+                      <span>Vacation</span>
+                    </li>
+                    <li class="item">
+                      <img class="feather feather-trending-up" src="svg/trending.svg" alt="" />
+                      <span>Festival</span>
+                    </li>
+                    <li class="item">
+                      <img class="feather feather-zap" src="svg/zap.svg" alt="" />
+                      <span>Concerts</span>
+                    </li>
+                </ul>
+              </div>
+        </div>
+        <div class="page-content">
+          <div class="header">
+            <table style="width: 100%;text-align: center;padding-bottom: 3em;">
+              <tr>
+                  <th class="heading-secondary project-title">Project Title</th>
+                  <th class="heading-secondary project-title">Project Description</th>
+                  <th class="heading-secondary project-title">Date</th>
+                  <th class="heading-secondary project-title">Shared Users</th>
+              </tr>
+              <tr>
+                  <td>{{ project.title }}</td>
+                  <td>{{ project.text }}</td>
+                  <td>{{ project.date }}</td>
+                  <td>{{main_user + ", " + ", ".join(project.shared_with.split("|")) }}</td>
+              </tr>
+            </table>
+            <div class="content-categories">
+              <div class="label-wrapper">
+                <input onclick="show('task-section')" class="nav-item" name="nav" type="radio" id="opt-1">
+                <label class="category" for="opt-1">Tasks</label>
+              </div>
+              <div class="label-wrapper">
+                <input onclick="show('comments')" class="nav-item" name="nav" type="radio" id="opt-2">
+                <label class="category" for="opt-2">Comments</label>
+              </div>
+              <div class="label-wrapper">
+                <input onclick="show('share')" class="nav-item" name="nav" type="radio" id="opt-2">
+                <label class="category" for="opt-3">Share</label>
+              </div>
+            </div>
+          </div>
+          <section id="task-section" class="target">
+          <a class="nav-btn hero-cta" href="{{ url_for('new_task', project_id=project.id) }}" style="width: 15em;text-align: center; margin-top: 1.5em;">Add New Task</a>
+        <div class="tasks-wrapper">
+          {% for task in tasks %}
+          <button onclick="openModal('{{ task.id }}')") id="button-{{ task.id }}" class="task-info-button">?</button>
+            <div class="task">
+              <input class="task-item" name="task" type="checkbox" id="item-{{ task.id }}">
+              <label for="item-{{ task.id }}">
+                <span class="label-text"> {{ task.main_content }}</span>
+              </label>
+              <button class="tag {{ task.status }}"> {{ task.status }} </button>
+            </div>
+            <div class="task-info" id="task-info-{{ task.id }}">
+              <div class="task-info-header">
+                <div class="title">{{ task.main_content}}</div>
+                <button onclick="closeModal('{{ task.id }}')" class="close-button">&times;</button>
+              </div>
+              <div class="task-info-body">
+                  <p><strong>Category</strong>: {{ task.category}}</p>
+                  <p><strong>Date Created</strong>: {{ task.date_posted }}</p>
+                  <p><strong>Start Date</strong>: {{ task.start_date}}, {{ task.start_time}}</p>
+                  <p><strong>End Date</strong>: {{ task.start_date}}, {{ task.start_time}}</p>
+                  <p><strong>Status</strong>: {{ task.status }}</p>
+                  <p><strong>Details</strong>: {{ task.extra_details }}</p>
+                  <a href="{{ url_for('update_task', task_id=task.id, project_id=task.project_id) }}">Edit</a>
+                  <form action="{{ url_for('delete_task', task_id=task.id, project_id=task.project_id) }}" method="post">
+                      <input type="submit" value="Delete">
+                  </form>
+              </div>
+            </div>
+            <div id="overlay-{{ task.id }}" class="overlay"></div>
+          {% endfor %}
+        </div>
+        </section>
+        <section id="comments" class="target">
+          <div class="project-form">
+            {% if project.comments %}
+              {% if project.comments|length > 0 %}
+                <h2 class="center">Comments</h2>
+                <ul class="pad-bottom center-column">
+                {% for comment in project.comments %}
+                  <li style="font-size:large">{{ comment.content }}
+                    <!-- upvote and downvote buttons when the comment is upvoted -->
+                    {% if user.email in comment.upvote_users.split("|") %} 
+                    <form class="vote-background" action="{{ url_for('remove_vote', project_id=project.id, comment_id = comment.id) }}" method="post">
+                        <button type="submit" value="upvote" class="favorite-btn"><ion-icon class="arrow-icon" name="arrow-up-outline" style="color: red"></ion-icon></button>
+                    </form> 
+                    <form class="vote-background arrow-down" action="{{ url_for('downvote_comment', project_id=project.id, comment_id = comment.id) }}" method="post">
+                      <button type="submit" value="downvote" class="favorite-btn"><ion-icon class="arrow-icon" name="arrow-down-outline"></ion-icon></button>
+                      <!-- display the score of the comment-->
+                      <div class="comment-score">
+                        {{comment.score}}
+                      </div>
+                    </form>   
+                    <!-- upvote and downvote buttons when the comment is neither upvoted nor downvoted-->
+                    {% elif user.email in comment.downvote_users.split("|") %}
+                    <form class="vote-background" action="{{ url_for('upvote_comment', project_id=project.id, comment_id = comment.id) }}" method="post">
+                      <button type="submit" value="upvote" class="favorite-btn"><ion-icon class="arrow-icon"name="arrow-up-outline"></ion-icon></button>
+                    </form>   
+                    <form class="vote-background arrow-down" action="{{ url_for('remove_vote', project_id=project.id, comment_id = comment.id) }}" method="post">
+                      <button type="submit" value="downvote" class="favorite-btn"><ion-icon class="arrow-icon" name="arrow-down-outline" style="color: red"></ion-icon></button>
+                      <!-- display the score of the comment-->
+                      <div class="comment-score">
+                        {{comment.score}}
+                      </div>
+                    </form>
+                    <!-- upvote and downvote buttons when the comment is downvoted-->
+                    {% else %}
+                    <form class="vote-background" action="{{ url_for('upvote_comment', project_id=project.id, comment_id = comment.id) }}" method="post">
+                      <button type="submit" value="upvote" class="favorite-btn"><ion-icon class="arrow-icon" name="arrow-up-outline"></ion-icon></button>
+                    </form>
+                    <form class="vote-background arrow-down" action="{{ url_for('downvote_comment', project_id=project.id, comment_id = comment.id) }}" method="post">
+                      <button type="submit" value="downvote" class="favorite-btn"><ion-icon class="arrow-icon" name="arrow-down-outline"></ion-icon></button>
+                      <!-- display the score of the comment-->
+                      <div class="comment-score">
+                        {{comment.score}}
+                      </div>
+                    </form>
+                    {% endif %}
+                    <!-- button to delete a comment-->
+                    {% if user.id == comment.user_id or user.id == project.user_id%}
+                    <form class="remove-comment-button" action="{{ url_for('remove_comment', project_id=project.id, comment_id = comment.id) }}" method="post">
+                      <input type="submit" value="remove comment">
+                    </form>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endif %}
+            <form action="{{ url_for('new_comment', project_id=project.id) }}" method="post" style="font-size: 2rem">
+              <div class="formwrapper center-column">
+                <h2 class="title">Add a comment</h2>
+                <div class="form-field">
+                  {{ form.comment.label }} <br/> {{ form.comment }}
+                </div>
+                <h2 class="title">Add a User</h2>
+                <div class="form-field">
+                  {{ form.username.label }} <br/> {{ form.username }}
+                </div>
+                {{ form.submit_comment }}
+              </div>
+            </form>
+          </div>
+        </div>
+        </section>
+        </div>
+      </div>
+    </section>
+    <script>
+      function openModal(id) {
+        document.getElementById("button-"+id).classList.add("active")
+        document.getElementById("overlay-"+id).classList.add("active")
+        document.getElementById("task-info-"+id).classList.add("active")
+      }
+      function closeModal(id) {
+        document.getElementById("button-"+id).classList.remove("active")
+        document.getElementById("overlay-"+id).classList.remove("active")
+        document.getElementById("task-info-"+id).classList.remove("active")
+      }
+    </script>
+  </body>
+
+</html>
